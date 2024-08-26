@@ -3,6 +3,7 @@ import numpy as np
 import cv2
 from PIL import Image
 
+
 @njit
 def randu(low, high):
     """standard uniform distribution."""

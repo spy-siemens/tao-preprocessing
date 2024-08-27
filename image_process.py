@@ -17,9 +17,8 @@ CROP_PADDING = 32
 COLOR_AUGMENTATION = False
 
 
-def load_and_crop_img(path, color_mode='rgb', target_size=(224, 224), interpolation='bilinear',
-                      keep_aspect_ratio=False):
-    #TODO: investigate which crop was used, asume to be none
+def load_and_crop_img(path, color_mode='rgb', target_size=(224, 224), interpolation='bilinear'):
+    # TODO: investigate which crop was used, assume to be none
     interpolation, crop = interpolation, "none"
 
     if crop == "none":
@@ -218,12 +217,12 @@ def load_and_crop_img_v2(path, color_mode='rgb', target_size=(224, 224), interpo
 
 
 def color_augmentation(
-    x_img,
-    color_shift_stddev=0.0,
-    hue_rotation_max=25.0,
-    saturation_shift_max=0.2,
-    contrast_center=0.5,
-    contrast_scale_max=0.1
+        x_img,
+        color_shift_stddev=0.0,
+        hue_rotation_max=25.0,
+        saturation_shift_max=0.2,
+        contrast_center=0.5,
+        contrast_scale_max=0.1
 ):
     """color augmentation for images."""
     # convert PIL Image to numpy array

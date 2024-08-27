@@ -23,7 +23,7 @@ class ONNXModel:
 
 
 # Load the ONNX model
-model = ONNXModel('model.onnx')
+model = ONNXModel('model_prune.onnx')
 
 
 def infer_single(img_path):

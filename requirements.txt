@@ -1,0 +1,4 @@
+Pillow==10.0.1
+numpy
+opencv-python-headless
+https://github.com/microsoft/onnxruntime/releases/download/v1.19.0/onnxruntime-linux-x64-1.19.0.tgz

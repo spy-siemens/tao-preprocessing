@@ -54,17 +54,20 @@ def load_img(path, color_mode="rgb", target_size=None, interpolation="nearest", 
         raise ImportError(
             "Could not import PIL.Image. The use of `load_img` requires PIL."
         )
-    if isinstance(path, io.BytesIO):
-        img = pil_image.open(path)
-    elif isinstance(path, (pathlib.Path, bytes, str)):
-        if isinstance(path, pathlib.Path):
-            path = str(path.resolve())
-        with open(path, "rb") as f:
-            img = pil_image.open(io.BytesIO(f.read()))
+    if isinstance(path, str):
+        if isinstance(path, io.BytesIO):
+            img = pil_image.open(path)
+        elif isinstance(path, (pathlib.Path, bytes, str)):
+            if isinstance(path, pathlib.Path):
+                path = str(path.resolve())
+            with open(path, "rb") as f:
+                img = pil_image.open(io.BytesIO(f.read()))
+        else:
+            raise TypeError(
+                f"path should be path-like or io.BytesIO, not {type(path)}"
+            )
     else:
-        raise TypeError(
-            f"path should be path-like or io.BytesIO, not {type(path)}"
-        )
+        get_image_from_vision_payload(path)
 
     if color_mode == "grayscale":
         # if image is not already an 8-bit, 16-bit or 32-bit grayscale image
@@ -290,6 +293,15 @@ def random_shift(x_img, shift_stddev):
 def randu(low, high):
     """standard uniform distribution."""
     return np.random.random() * (high - low) + low
+
+
+def get_image_from_vision_payload(data: dict):
+    image = data["detail"][0]
+    width = image["width"]
+    height = image["height"]
+    image_bytes = image["image"]
+    pil_image_read = pil_image.frombytes("RGB", (width, height), image_bytes)
+    return pil_image_read
 
 
 def generate_input(img_path: str):

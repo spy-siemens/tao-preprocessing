@@ -67,7 +67,7 @@ def load_img(path, color_mode="rgb", target_size=None, interpolation="nearest", 
                 f"path should be path-like or io.BytesIO, not {type(path)}"
             )
     else:
-        get_image_from_vision_payload(path)
+        img = get_image_from_vision_payload(path)
 
     if color_mode == "grayscale":
         # if image is not already an 8-bit, 16-bit or 32-bit grayscale image

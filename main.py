@@ -1,10 +1,10 @@
 import os
 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import numpy as np
 import onnxruntime as ort
-import seaborn as sns
-from sklearn.metrics import confusion_matrix, accuracy_score
+# import seaborn as sns
+# from sklearn.metrics import confusion_matrix, accuracy_score
 
 from image_process import generate_input
 
@@ -61,24 +61,24 @@ def test_all_images(base_path):
 
 def plot_confusion_matrix(func_true_labels, func_predicted_labels):
     cm = confusion_matrix(func_true_labels, func_predicted_labels)
-    plt.figure(figsize=(10, 8))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
-                xticklabels=LABEL_MAP.values(),
-                yticklabels=LABEL_MAP.values())
-    plt.xlabel('Predicted')
-    plt.ylabel('True')
-    plt.title('Confusion Matrix')
-    plt.tight_layout()
-    plt.savefig('confusion_matrix.png')
-    plt.close()
+    # plt.figure(figsize=(10, 8))
+    # sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+    #             xticklabels=LABEL_MAP.values(),
+    #             yticklabels=LABEL_MAP.values())
+    # plt.xlabel('Predicted')
+    # plt.ylabel('True')
+    # plt.title('Confusion Matrix')
+    # plt.tight_layout()
+    # plt.savefig('confusion_matrix.png')
+    # plt.close()
 
 
-if __name__ == "__main__":
-    img_path = './simatic_photos'
-    true_labels, predicted_labels = test_all_images(img_path)
-    accuracy = accuracy_score(true_labels, predicted_labels)
-    print(f"Overall Accuracy: {accuracy:.4f}")
-    plot_confusion_matrix(true_labels, predicted_labels)
-    print("Confusion matrix has been saved as 'confusion_matrix.png'")
+# if __name__ == "__main__":
+#     img_path = './simatic_photos'
+#     true_labels, predicted_labels = test_all_images(img_path)
+#     accuracy = accuracy_score(true_labels, predicted_labels)
+#     print(f"Overall Accuracy: {accuracy:.4f}")
+#     plot_confusion_matrix(true_labels, predicted_labels)
+#     print("Confusion matrix has been saved as 'confusion_matrix.png'")
 
 

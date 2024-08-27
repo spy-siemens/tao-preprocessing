@@ -120,7 +120,7 @@ def load_img(path, color_mode="rgb", target_size=None, interpolation="nearest", 
     return img
 
 
-def load_and_crop_img_v2(path, color_mode='rgb', target_size=(224, 224), interpolation='bilinear:random'):
+def load_and_crop_img_v2(path, color_mode='rgb', target_size=(224, 224), interpolation='bilinear:center'):
     interpolation, crop = interpolation.split(":") \
         if ":" in interpolation else (interpolation, "none")
 
